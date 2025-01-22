@@ -5,8 +5,9 @@ from wtforms import StringField, IntegerField, SubmitField, PasswordField
 from wtforms.validators import DataRequired, Length
 
 app = Flask(__name__)
-SQL_FILE_URL = "https://raw.githubusercontent.com/Saimonaligok/data/refs/heads/main/library_db.sql"
-SQL_FILE_NAME = "library_db.sql
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/library_db'
+app.config['SECRET_KEY'] = 'your_secret_key'
+db = SQLAlchemy(app)
 
 class Books(db.Model):
     id = db.Column(db.Integer, primary_key=True)
